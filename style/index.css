@@ -1,0 +1,9 @@
+.main-character {
+    display: grid;
+    place-items: center;
+    /* min-height: 100vh; */
+}
+
+.emu {
+    width: 70%;
+}
