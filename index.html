@@ -6,22 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/index.css">
     <link rel="stylesheet" href="style/bg.css">
-    <script src="script/script.js" defer></script>
+    <link rel="stylesheet" href="style/setting-drawer.css">
+
+    <script src="script/rotate.js" defer></script>
+    <script src="script/drawer-list.js" type="module" defer></script>
     <title>SekaiRotate</title>
 </head>
 
 <body>
     <main>
-        <div class="main-character">
-            <img src="image/emu.png" alt="emu" class="emu" id="emu">
+        <div class="main-character" id="mainCharacter">
+            <img src="image/emu.png" alt="emu" class="character" id="character">
         </div>
-        <button id="settingsBtn">settings</button>
-        <div class="settings-drawer">
-            <div class="drawer-header">
+
+        <button class="settings-btn-open" id="settingsBtnOpen">
+            <span class="settings-icon"></span>
+        </button>
+        <div class="drawer-overlay" id="drawerOverlay"></div>
+        <div class="settings-drawer" id="settingsDrawer">
+            <div class="drawer-header" id="drawerHeader">
                 <h3 class="settings-title">Character</h3>
-                <button class="settings-btn-close" id="settingsBtnClose"></button>
+                <button class="settings-btn-close" id="settingsBtnClose">x</button>
             </div>
-            <div class="drawer-list"></div>
+            <div class="drawer-list" id="drawerList"></div>
         </div>
     </main>
 </body>

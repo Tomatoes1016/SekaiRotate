@@ -1,0 +1,109 @@
+:root {
+  --md-sys-motion-easing-emphasized: cubic-bezier(.2, 0, 0, 1);
+  --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(.05, .7, .1, 1);
+  --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(.3, 0, .8, .15);
+  --md-sys-duration-short2: 100ms;
+  --md-sys-duration-medium2: 300ms;
+  --md-sys-duration-long2: 500ms;
+  }
+
+#settingsDrawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+
+  box-sizing: border-box;
+  width: 100vw;
+  border-radius: 28px 28px 0 0;
+
+  color: var(--md-sys-color-on-surface);
+
+  background-color: var(--md-sys-color-surface);
+  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, .15), 0 1px 3px 0 rgba(0, 0, 0, .3);
+  transform: translateY(100%);
+
+  transition: transform var(--md-sys-duration-medium2) var(--md-sys-motion-easing-emphasized-accelerate);
+  }
+
+#settingsDrawer.active {
+  transform: translateY(0);
+
+  transition: transform var(--md-sys-duration-long2) var(--md-sys-motion-easing-emphasized-decelerate);
+  }
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 24px;
+  }
+
+.settings-title {
+  color: var(--md-sys-color-on-surface);
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.75rem;
+  }
+
+.settings-btn-close {
+  padding: 8px;
+  border: none;
+  border-radius: 50%;
+
+  color: var(--md-sys-color-on-surface-variant);
+
+  background-color: transparent;
+
+  transition: background-color var(--md-sys-duration-short2) var(--md-sys-motion-easing-emphasized);
+
+  cursor: pointer;
+  }
+
+.settings-btn-close:hover {
+  background-color: color-mix(in srgb, var(--md-sys-color-on-surface-variant) 8%, transparent);
+  }
+
+.drawer-list {
+  padding: 8px 12px 24px 12px;
+  margin: 0;
+
+  background-color: transparent;
+
+  list-style: none;
+  }
+
+.drawer-item {
+  display: flex;
+  align-items: center;
+
+  height: 56px;
+  padding: 0 16px;
+  margin-bottom: 4px;
+  border-radius: 28px;
+
+  color: var(--md-sys-color-on-surface-variant);
+  font-style: .875rem;
+  font-weight: 500;
+  font-weight: 500;
+
+  transition: background-color var(--md-sys-duration-short2) var(--md-sys-motion-easing-emphasized), color var(--md-sys-duration-short2) var(--md-sys-motion-easing-emphasized);
+
+  cursor: pointer;
+  }
+
+.drawer-item:hover {
+  background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent);
+  }
+
+.drawer-item.selected {
+  color: var(--md-sys-color-on-secondary-container);
+  font-weight: 500;
+
+  background-color: var(--md-sys-color-secondary-container);
+  }
+
+.drawer-item.selected:hover {
+  background-color: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 8%, var(--md-sys-color-secondary-container));
+  }

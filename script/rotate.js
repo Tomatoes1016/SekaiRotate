@@ -1,4 +1,4 @@
-const emu = document.getElementById('emu');
+const character = document.getElementById('character');
 
 let angle = 0;
 let speed = 0;
@@ -10,7 +10,7 @@ const ACCELERATION = 0.3;
 const FRICTION = 0.92;
 const SPRING = 0.03;
 
-emu.addEventListener('pointerdown', (e) => {
+character.addEventListener('pointerdown', (e) => {
     e.preventDefault();
     isPressing = true;
 });
@@ -25,7 +25,7 @@ function release() {
 
 window.addEventListener('pointerup', release);
 window.addEventListener('pointercancel', release);
-emu.addEventListener('contextmenu', (e) => e.preventDefault());
+character.addEventListener('contextmenu', (e) => e.preventDefault());
 
 function update() {
     if (isPressing) {
@@ -36,7 +36,7 @@ function update() {
         speed = (speed + pullForce) * FRICTION;
         angle += speed;
     }
-    emu.style.transform = `rotate(${angle}deg)`;
+    character.style.transform = `rotate(${angle}deg)`;
     requestAnimationFrame(update);
 }
 
