@@ -4,32 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/index.css">
-    <link rel="stylesheet" href="style/bg.css">
-    <link rel="stylesheet" href="style/setting-drawer.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/drawer.css">
 
-    <script src="script/rotate.js" defer></script>
-    <script src="script/drawer-list.js" type="module" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script src="./assets/js/rotate.js" defer></script>
+    <script src="./assets/js/drawer.js" defer></script>
+    <script type="module" src="./assets/js/material-color.js"></script>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+
     <title>SekaiRotate</title>
 </head>
 
 <body>
     <main>
         <div class="main-character" id="mainCharacter">
-            <img src="image/emu.png" alt="emu" class="character" id="character">
+            <img src="./assets/images/emu.png" alt="emu" class="character" id="character">
         </div>
 
-        <button class="settings-btn-open" id="settingsBtnOpen">
-            <span class="settings-icon"></span>
-        </button>
+        <md-fab class="settings-fab" id="settingsFab" aria-label="Settings">
+            <svg xmlns="http://www.w3.org/2000/svg" slot="icon" width="24" height="24" viewBox="0 0 24 24"
+                fill="currentColor">
+                <path
+                    d="M19.5 12c0-.23-.01-.45-.03-.68l1.86-1.41c.4-.3.51-.86.26-1.3l-1.87-3.23a.987.987 0 0 0-1.25-.42l-2.15.91c-.37-.26-.76-.49-1.17-.68l-.29-2.31c-.06-.5-.49-.88-.99-.88h-3.73c-.51 0-.94.38-1 .88l-.29 2.31c-.41.19-.8.42-1.17.68l-2.15-.91c-.46-.2-1-.02-1.25.42L2.41 8.62c-.25.44-.14.99.26 1.3l1.86 1.41a7.343 7.343 0 0 0 0 1.35l-1.86 1.41c-.4.3-.51.86-.26 1.3l1.87 3.23c.25.44.79.62 1.25.42l2.15-.91c.37.26.76.49 1.17.68l.29 2.31c.06.5.49.88.99.88h3.73c.5 0 .93-.38.99-.88l.29-2.31c.41-.19.8-.42 1.17-.68l2.15.91c.46.2 1 .02 1.25-.42l1.87-3.23c.25-.44.14-.99-.26-1.3l-1.86-1.41c.03-.23.04-.45.04-.68zm-7.46 3.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" />
+            </svg>
+        </md-fab>
+
         <div class="drawer-overlay" id="drawerOverlay"></div>
-        <div class="settings-drawer" id="settingsDrawer">
-            <div class="drawer-header" id="drawerHeader">
-                <h3 class="settings-title">Character</h3>
-                <button class="settings-btn-close" id="settingsBtnClose">x</button>
+        <md-dialog class="drawer" id="drawer">
+            <div slot="headline">Character</div>
+            <form slot="content" id="drawerOptions"></form>
+            <div slot="actions">
+                <md-outlined-button class="drawer-btn" id="drawerBtn">OK</md-outlined-button>
             </div>
-            <div class="drawer-list" id="drawerList"></div>
-        </div>
+        </md-dialog>
     </main>
 </body>
 

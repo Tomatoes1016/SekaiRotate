@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    background-color: var(--md-sys-color-background);
+}
+
+.main-character {
+    display: grid;
+    place-items: center;
+    min-height: 90vh;
+}
+
+.character {
+    width: 70%;
+    user-select: none;
+}
+
+.settings-fab {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+}
