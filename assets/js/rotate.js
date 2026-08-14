@@ -12,8 +12,15 @@ const SPRING = 0.03;
 
 character.addEventListener('pointerdown', (e) => {
     e.preventDefault();
+    character.setPointerCapture(e.pointerId);
     isPressing = true;
-});
+}, { passive: false });
+
+character.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+}, { passive: false })
 
 function release() {
     if (!isPressing) return;
@@ -25,7 +32,11 @@ function release() {
 
 window.addEventListener('pointerup', release);
 window.addEventListener('pointercancel', release);
-character.addEventListener('contextmenu', (e) => e.preventDefault());
+window.addEventListener('contextmenu', (e) => {
+    if (e.target === character || character.contains(e.target)) {
+        e.preventDefault();
+    }
+}, { passive: false })
 
 function update() {
     if (isPressing) {

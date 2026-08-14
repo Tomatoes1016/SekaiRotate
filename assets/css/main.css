@@ -11,7 +11,13 @@ body {
 
 .character {
     width: 70%;
+    -webkit-touch-callout: none;
     user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .settings-fab {
