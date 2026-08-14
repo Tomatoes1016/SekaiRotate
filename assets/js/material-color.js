@@ -12,7 +12,7 @@ async function updateTheme() {
 
         const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         applyTheme(theme, { target: document.body, dark: systemDark });
-    } catch (ererror) {
+    } catch (error) {
         console.error('Failed to update theme', error);
 
     }
