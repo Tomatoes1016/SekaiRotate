@@ -7,10 +7,10 @@ async function updateTheme() {
     try {
         const sourceColor = await sourceColorFromImage(character);
         const theme = themeFromSourceColor(sourceColor);
+        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
         console.log(JSON.stringify(theme, null, 2));
 
-        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         applyTheme(theme, { target: document.body, dark: systemDark });
     } catch (error) {
         console.error('Failed to update theme', error);
@@ -24,3 +24,5 @@ if (character) {
         updateTheme();
     }
 }
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', updateTheme);
