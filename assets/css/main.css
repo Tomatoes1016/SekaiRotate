@@ -18,4 +18,5 @@ body {
     position: fixed;
     right: 16px;
     bottom: 16px;
+    --md-fab-container-color: var(--md-sys-color-primary-container);
 }
