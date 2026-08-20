@@ -3,19 +3,37 @@ body {
     background-color: var(--md-sys-color-background);
 }
 
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
 .main-character {
-    display: grid;
-    place-items: center;
-    min-height: 90vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.character-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .character {
-    width: 70%;
-    -webkit-touch-callout: none;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    width: 70vw;
+    object-fit: contain;
+    pointer-events: none;
     -webkit-user-drag: none;
     -webkit-tap-highlight-color: transparent;
 }

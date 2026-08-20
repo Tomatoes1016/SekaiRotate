@@ -1,4 +1,5 @@
 const character = document.getElementById('character');
+const overlay = document.getElementById('characterOverlay')
 
 let angle = 0;
 let speed = 0;
@@ -10,13 +11,14 @@ const ACCELERATION = 0.3;
 const FRICTION = 0.92;
 const SPRING = 0.03;
 
-character.addEventListener('pointerdown', (e) => {
+overlay.addEventListener('pointerdown', (e) => {
     e.preventDefault();
-    character.setPointerCapture(e.pointerId);
+    overlay.setPointerCapture(e.pointerId);
+    playVoice();
     isPressing = true;
 }, { passive: false });
 
-character.addEventListener('contextmenu', (e) => {
+overlay.addEventListener('contextmenu', (e) => {
     e.preventDefault();
     e.stopPropagation();
     return false;
@@ -25,6 +27,7 @@ character.addEventListener('contextmenu', (e) => {
 function release() {
     if (!isPressing) return;
     isPressing = false;
+    stopVoice();
     const estimatedDist = speed * (FRICTION / (1 - FRICTION));
     const estimatedEndAngle = angle + estimatedDist;
     targetAngle = Math.round(estimatedEndAngle / 360) * 360;
