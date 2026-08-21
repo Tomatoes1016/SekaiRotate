@@ -1,10 +1,37 @@
-const emuAudio = new Audio('./assets/audios/emu_voice.mp3');
-emuAudio.preload = 'auto';
+const audioMap = {
+    'emu.png': new Audio('./assets/audios/emu_voice.mp3'),
+    'aris.png': new Audio('./assets/audios/aris_voice.mp3')
+};
+
+Object.values(audioMap).forEach(audio => {
+    audio.preload = 'auto';
+});
+
+let currentAudio = null;
 let audioFadeFrame = null;
 
-function playVoice() {
+
+function getCurrentAudio() {
     const characterImg = document.getElementById('character');
-    if (!characterImg || !characterImg.src.endsWith('emu.png')) return;
+    if (!characterImg) return null;
+
+    for (const [imgName, audio] of Object.entries(audioMap)) {
+        if (characterImg.src.endsWith('emu.png')) {
+            return audio
+        }
+    }
+    return null
+}
+
+function playVoice() {
+    const audio = getCurrentAudio();
+    if (!audio) return;
+
+    if (currentAudio && currentAudio != audio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+    currentAudio = audio
 
     cancelAnimationFrame(audioFadeFrame);
 
@@ -24,10 +51,10 @@ function playVoice() {
         const progress = elapsed / fadeDuration;
 
         if (progress >= 1) {
-            emuAudio.volume = 1;
+            audio.volume = 1;
         } else {
             const nextVol = startVol + (1 - startVol) * progress;
-            emuAudio.volume = Math.max(0, Math.min(1, nextVol));
+            audio.volume = Math.max(0, Math.min(1, nextVol));
             audioFadeFrame = requestAnimationFrame(fadeIn);
         }
     }
@@ -35,8 +62,8 @@ function playVoice() {
 }
 
 function stopVoice() {
-    const characterImg = document.getElementById('character');
-    if (!characterImg || !characterImg.src.endsWith('emu.png')) return;
+    const audio = currentAudio || getCurrentAudio();
+    if (!audio) return;
 
     cancelAnimationFrame(audioFadeFrame);
     emuAudio.loop = false;
@@ -45,7 +72,7 @@ function stopVoice() {
     if (isNaN(remainingTime) || remainingTime < 100) {
         remainingTime = 500;
     }
-    const startVol = emuAudio.volume;
+    const startVol = audio.volume;
     const startTime = performance.now();
     function fadeOut(time) {
         const elapsed = time - startTime;
@@ -55,7 +82,7 @@ function stopVoice() {
             emuAudio.volume = 0;
         } else {
             const nextVol = startVol * (1 - progress);
-            emuAudio.volume = Math.max(0, Math.min(1, nextVol));
+            audio.volume = Math.max(0, Math.min(1, nextVol));
             audioFadeFrame = requestAnimationFrame(fadeOut);
         }
     }

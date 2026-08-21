@@ -2,7 +2,8 @@ const charactList = [
     { value: 'emu', label: 'emu' },
     { value: 'tks', label: 'tks' },
     { value: 'rui', label: 'rui' },
-    { value: 'nene', label: 'nene' }
+    { value: 'nene', label: 'nene' },
+    { value: 'aris', label: 'aris' }
 ];
 
 const characterImg = document.getElementById('character');
